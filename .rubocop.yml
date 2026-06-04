@@ -9,6 +9,7 @@ AllCops:
     - "bin/**/*"
     - "config/environments/**/*"
     - "node_modules/**/*"
+    - "vendor/**/*"
 
 # Layout
 Layout/LineLength:
