@@ -28,3 +28,7 @@ Style/Documentation:
 # Rails
 Rails/FilePath:
   EnforcedStyle: arguments
+
+Rails/Output:
+  Exclude:
+    - "config/puma.rb"
