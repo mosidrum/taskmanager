@@ -1,0 +1,29 @@
+plugins:
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.3
+  NewCops: enable
+  Exclude:
+    - "db/schema.rb"
+    - "bin/**/*"
+    - "config/environments/**/*"
+    - "node_modules/**/*"
+
+# Layout
+Layout/LineLength:
+  Max: 120
+
+# Style
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+# Rails
+Rails/FilePath:
+  EnforcedStyle: arguments
