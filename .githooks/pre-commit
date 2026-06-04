@@ -1,0 +1,17 @@
+#!/bin/sh
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+staged=$(git diff --cached --name-only --diff-filter=ACM | grep '\.rb$')
+[ -z "$staged" ] && exit 0
+
+echo "→ Running RuboCop on staged files..."
+echo "$staged" | xargs bundle exec rubocop --no-color --force-exclusion
+
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "  RuboCop failed. Fix offenses or run: bundle exec rubocop --autocorrect"
+  echo ""
+  exit 1
+fi
