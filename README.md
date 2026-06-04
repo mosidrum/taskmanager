@@ -7,7 +7,7 @@ A full-stack web application built with Ruby on Rails, used as a hands-on projec
 | Concept | Description |
 |---|---|
 | **Rails MVC** | Models, Views, Controllers, routing |
-| **PostgreSQL** | Relational database, migrations, schema design |
+| **SQLite / PostgreSQL** | Relational database, migrations, schema design |
 | **Authentication** | User sign up, login, sessions, password hashing |
 | **CRUD** | Create, Read, Update, Delete with full UI |
 | **Associations** | belongs_to, has_many, has_many through |
@@ -24,12 +24,36 @@ A full-stack web application built with Ruby on Rails, used as a hands-on projec
 - **Hotwire** (Turbo + Stimulus)
 - **Puma** web server
 
+## Code Quality
+
+- **RuboCop** + **rubocop-rails** for linting and formatting
+- **GitHub Actions** runs RuboCop on every push to `main`
+- Run locally: `bundle exec rubocop`
+- Auto-fix: `bundle exec rubocop --autocorrect`
+
+## Git Conventions
+
+Commits follow the [Conventional Commits](https://www.conventionalcommits.org) spec:
+
+```
+type(scope): description
+
+Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
+```
+
+Git hooks (in `.githooks/`) enforce this automatically:
+
+| Hook | When | What |
+|---|---|---|
+| `commit-msg` | Every commit | Validates conventional commit format |
+| `pre-commit` | Every commit | Runs RuboCop on staged `.rb` files |
+| `pre-push` | Push to `main` | Runs full RuboCop on the codebase |
+
 ## Getting Started
 
 ```bash
-bundle install
-rails db:create db:migrate
-rails server
+bin/setup        # installs gems, configures git hooks, sets up database
+bin/rails server # start the server
 ```
 
 Visit `http://localhost:3000`
