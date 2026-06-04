@@ -11,6 +11,7 @@
 # Environment variables
 /.env*
 !/.env*.erb
+!/.env.example
 
 # Logs and temp files
 /log/*
