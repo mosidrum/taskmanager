@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+APP_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$APP_ROOT"
+
 echo "== Starting database container =="
 docker compose up db -d
 
