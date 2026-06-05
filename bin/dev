@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+echo "== Starting database container =="
+docker compose up db -d
+
+echo "== Starting Rails server =="
+bin/rails server

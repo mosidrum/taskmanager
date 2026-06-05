@@ -20,7 +20,7 @@ A full-stack web application built with Ruby on Rails, used as a hands-on projec
 
 - **Ruby** 3.3.6
 - **Rails** 7.2
-- **SQLite** (development) → **PostgreSQL** (production)
+- **PostgreSQL** via Docker
 - **Hotwire** (Turbo + Stimulus)
 - **Puma** web server
 
@@ -51,9 +51,11 @@ Git hooks (in `.githooks/`) enforce this automatically:
 
 ## Getting Started
 
+Prerequisites: [Docker](https://www.docker.com) must be installed and running.
+
 ```bash
-bin/setup        # installs gems, configures git hooks, sets up database
-bin/rails server # start the server
+bin/setup  # install gems, configure git hooks, start DB container, set up database
+bin/dev    # start DB container + Rails server
 ```
 
 Visit `http://localhost:3000`

@@ -16,8 +16,12 @@ FileUtils.chdir APP_ROOT do
   system! "git config core.hooksPath .githooks"
   system! "chmod +x .githooks/*"
 
+  puts "\n== Starting database container =="
+  system! "docker compose up db -d"
+  sleep 3
+
   puts "\n== Setting up database =="
   system! "bin/rails db:prepare"
 
-  puts "\n== Done! Run: bin/rails server =="
+  puts "\n== Done! Run: bin/dev =="
 end
