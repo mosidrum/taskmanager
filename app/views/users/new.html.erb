@@ -1,33 +1,80 @@
-<h1>Sign Up</h1>
+<% content_for :left_heading do %>
+  <h2>Get started today! 🎉</h2>
+  <p>Create your account and start organizing your tasks and projects.</p>
+<% end %>
+
+<h1 class="auth-title">Create your account</h1>
+<p class="auth-sub">Enter your details below to get started</p>
 
 <% if @user.errors.any? %>
-  <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+  <div class="errors" style="margin-bottom: 20px;">
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <%= form_with model: @user, url: sign_up_path do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class="auth-field">
+    <label>Full name</label>
+    <div class="auth-input-wrap">
+      <span class="ii-l">👤</span>
+      <%= f.text_field :name, placeholder: "Your full name" %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+  <div class="auth-field">
+    <label>Email address</label>
+    <div class="auth-input-wrap">
+      <span class="ii-l">✉</span>
+      <%= f.email_field :email, placeholder: "you@example.com" %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+  <div class="auth-field">
+    <label>Password</label>
+    <div class="auth-input-wrap">
+      <span class="ii-l">🔒</span>
+      <%= f.password_field :password, placeholder: "At least 8 characters" %>
+      <span class="ii-r">👁</span>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+  <div class="auth-field">
+    <label>Confirm password</label>
+    <div class="auth-input-wrap">
+      <span class="ii-l">🔒</span>
+      <%= f.password_field :password_confirmation, placeholder: "Repeat your password" %>
+    </div>
   </div>
 
-  <%= f.submit "Sign up" %>
+  <%= f.submit "Sign up", class: "btn-auth" %>
 <% end %>
+
+<div class="auth-divider"><span>or continue with</span></div>
+
+<button class="social-btn">
+  <span style="font-size:16px;font-weight:900;color:#4285F4;">G</span>
+  Continue with Google
+</button>
+
+<button class="social-btn">
+  <span class="ms-squares">
+    <span style="background:#f25022;"></span>
+    <span style="background:#00a4ef;"></span>
+    <span style="background:#7fba00;"></span>
+    <span style="background:#ffb900;"></span>
+  </span>
+  Continue with Microsoft
+</button>
+
+<button class="social-btn">
+  <span style="font-size:16px;">🍎</span>
+  Continue with Apple
+</button>
+
+<div class="auth-switch">
+  Already have an account? <%= link_to "Log in", login_path %>
+</div>

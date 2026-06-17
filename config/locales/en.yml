@@ -29,3 +29,5 @@
 
 en:
   hello: "Hello world"
+  sessions:
+    invalid_credentials: "Invalid email or password."
