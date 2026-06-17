@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Taskmanager" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <div class="auth-split">
+
+      <%# LEFT PANEL %>
+      <div class="auth-left">
+
+        <%= link_to root_path, class: "auth-brand" do %>
+          <span class="nav-logo-box">✓</span>
+          Taskmanager
+        <% end %>
+
+        <div class="auth-left-hero">
+          <%= yield :left_heading %>
+        </div>
+
+        <div class="auth-mockup">
+          <div class="am-body">
+            <div class="am-sidebar">
+              <div class="am-brand">
+                <span class="am-logo-box">✓</span>
+                Taskly
+              </div>
+              <div class="am-item active"><span>🏠</span> Home</div>
+              <div class="am-item"><span>⏱</span> My tasks</div>
+              <div class="am-item"><span>📦</span> Projects</div>
+              <div class="am-item"><span>📅</span> Calendar</div>
+              <div class="am-item"><span>📥</span> Inbox <span class="am-badge">4</span></div>
+              <div class="am-item"><span>👤</span> Team</div>
+              <div class="am-item"><span>⚙️</span> Settings</div>
+            </div>
+            <div class="am-main">
+              <div class="am-heading">My tasks</div>
+              <div class="am-tabs">
+                <span class="am-tab active">All</span>
+                <span class="am-tab">In progress</span>
+                <span class="am-tab">Completed</span>
+                <span class="am-tab">Overdue</span>
+              </div>
+              <div class="am-row">
+                <div class="am-circle checked">✓</div>
+                <span class="am-name done">Design landing page</span>
+                <span class="am-tag tag-b">Design</span>
+              </div>
+              <div class="am-row">
+                <div class="am-circle"></div>
+                <span class="am-name">Review project proposal</span>
+                <span class="am-tag tag-g">Planning</span>
+              </div>
+              <div class="am-row">
+                <div class="am-circle"></div>
+                <span class="am-name">Team stand-up meeting</span>
+                <span class="am-tag tag-p" style="background:#fff7ed;color:#c2410c;">Meeting</span>
+              </div>
+              <div class="am-row">
+                <div class="am-circle"></div>
+                <span class="am-name">Update documentation</span>
+                <span class="am-tag tag-b">Docs</span>
+              </div>
+              <div class="am-row">
+                <div class="am-circle"></div>
+                <span class="am-name">Fix login issue</span>
+                <span class="am-tag" style="background:#fee2e2;color:#b91c1c;">Bug</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-feats">
+          <div class="af">
+            <div class="af-icon ic-purple">✅</div>
+            <div class="af-title">Stay organized</div>
+            <div class="af-desc">All your tasks in one place.</div>
+          </div>
+          <div class="af">
+            <div class="af-icon ic-green">👥</div>
+            <div class="af-title">Collaborate</div>
+            <div class="af-desc">Work seamlessly with your team.</div>
+          </div>
+          <div class="af">
+            <div class="af-icon ic-orange">📈</div>
+            <div class="af-title">Get things done</div>
+            <div class="af-desc">Focus on what matters most.</div>
+          </div>
+        </div>
+
+        <div class="auth-testi">
+          <div class="at-quote">"</div>
+          <p class="at-text">Taskmanager has simplified the way our team manages work. It's intuitive and powerful.</p>
+          <div class="at-author">
+            <div class="at-av">👩</div>
+            <div>
+              <div class="at-name">Sarah Johnson</div>
+              <div class="at-role">Product Manager</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <%# RIGHT PANEL - form %>
+      <div class="auth-right">
+        <div class="auth-form-wrap">
+          <%= yield %>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
