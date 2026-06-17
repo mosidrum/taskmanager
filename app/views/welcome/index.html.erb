@@ -1,5 +1,260 @@
-<h1>Welcome to Task Manager</h1>
-<p>Organise your tasks in one place.</p>
-<%= link_to "Tasks", tasks_path %>
-<%= link_to "About", about_path %>
+<%# HERO %>
+<section class="hero-section">
+  <div class="wrap hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">Plan, Organize, Get things done</div>
+      <h1>Task management<br>made <span class="accent-word">simple.</span></h1>
+      <p>Organize your tasks, collaborate with your team,<br>and get more done – all in one place.</p>
+      <div class="hero-ctas">
+        <%= link_to "Get started free →", sign_up_path, class: "btn btn-primary" %>
+        <a href="#how-it-works" class="btn btn-ghost">▶ Watch demo</a>
+      </div>
+      <div class="social-proof">
+        <div class="avatars">
+          <div class="av av1">SJ</div>
+          <div class="av av2">DL</div>
+          <div class="av av3">EW</div>
+          <div class="av av4">MK</div>
+          <div class="av av5">AR</div>
+        </div>
+        <span class="stars">★★★★★</span>
+        <span class="proof-text">Loved by 10,000+ users</span>
+      </div>
+    </div>
 
+    <div class="hero-right">
+      <div class="app-mockup">
+        <div class="mockup-titlebar">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-g"></span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-sidebar">
+            <div class="ms-brand"><span style="font-size:13px;">✓</span> Taskmanager</div>
+            <div class="ms-item active"><span class="ms-icon">🏠</span> Home</div>
+            <div class="ms-item"><span class="ms-icon">✓</span> My tasks</div>
+            <div class="ms-item"><span class="ms-icon">📥</span> Inbox</div>
+            <div class="ms-item"><span class="ms-icon">📅</span> Today</div>
+            <div class="ms-item"><span class="ms-icon">📆</span> Upcoming</div>
+            <div class="ms-item"><span class="ms-icon">📁</span> Projects</div>
+            <div class="ms-item"><span class="ms-icon">👥</span> Teams</div>
+            <div class="ms-item"><span class="ms-icon">⚙️</span> Settings</div>
+          </div>
+          <div class="mockup-main">
+            <div class="m-topbar">
+              <div class="m-greeting">Good morning, Olivia! 🌞</div>
+              <div class="m-icons">🔍 🔔</div>
+            </div>
+            <div class="m-stats">
+              <div class="mstat"><span class="msn">12</span><span class="msl">Total tasks</span></div>
+              <div class="mstat ip"><span class="msn">5</span><span class="msl">In progress</span></div>
+              <div class="mstat done"><span class="msn">24</span><span class="msl">Completed</span></div>
+              <div class="mstat late"><span class="msn">3</span><span class="msl">Overdue</span></div>
+            </div>
+            <div class="m-section">
+              <span class="m-section-title">Today</span>
+              <span class="m-view-all">View all</span>
+            </div>
+            <div class="m-task">
+              <div class="m-check"></div>
+              <span class="m-name">Design homepage for website</span>
+              <span class="m-tag tag-b">Website</span>
+              <span class="m-time">9:00 AM</span>
+            </div>
+            <div class="m-task">
+              <div class="m-check"></div>
+              <span class="m-name">Review project requirements</span>
+              <span class="m-tag tag-p">Product Launch</span>
+              <span class="m-time">11:00 AM</span>
+            </div>
+            <div class="m-task">
+              <div class="m-check"></div>
+              <span class="m-name">Team stand-up meeting</span>
+              <span class="m-tag tag-g">Meeting</span>
+              <span class="m-time">12:30 PM</span>
+            </div>
+            <div class="m-task">
+              <div class="m-check"></div>
+              <span class="m-name">Update user documentation</span>
+              <span class="m-tag tag-y">Docs</span>
+              <span class="m-time">3:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# FEATURES %>
+<section class="features-section" id="features">
+  <div class="wrap">
+    <div class="sec-header">
+      <h2>Everything you need to stay organized</h2>
+      <p>Powerful features to help you and your team accomplish more every day.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon ic-purple">✅</div>
+        <h3>Organize tasks</h3>
+        <p>Create, prioritize, and organize tasks in lists and projects.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon ic-green">👥</div>
+        <h3>Collaborate easily</h3>
+        <p>Share projects, assign tasks, and work together seamlessly.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon ic-orange">📅</div>
+        <h3>Stay on track</h3>
+        <p>Set due dates, get reminders, and never miss a deadline.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon ic-blue">📈</div>
+        <h3>Track progress</h3>
+        <p>Visualize progress and achieve your goals faster.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# HOW IT WORKS %>
+<section class="how-section" id="how-it-works">
+  <div class="wrap">
+    <div class="sec-header">
+      <h2>How it works</h2>
+      <p>Get started in minutes and boost your productivity.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step-card">
+        <div class="step-illus">🖥️</div>
+        <div class="step-num">1</div>
+        <h3>Create your workspace</h3>
+        <p>Sign up and create a workspace for yourself or your team.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <div class="step-illus">📝</div>
+        <div class="step-num">2</div>
+        <h3>Add tasks &amp; organize</h3>
+        <p>Add tasks, set due dates, and organize by projects.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <div class="step-illus">🎯</div>
+        <div class="step-num">3</div>
+        <h3>Collaborate &amp; get things done</h3>
+        <p>Work together, track progress, and achieve your goals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# TEMPLATES %>
+<section class="templates-section" id="templates">
+  <div class="wrap">
+    <div class="templates-inner">
+      <div class="tmpl-left">
+        <h2>Ready-to-use templates</h2>
+        <p>Get started quickly with templates for any workflow.</p>
+        <a href="#" class="link-arrow">Browse all templates →</a>
+      </div>
+      <div class="templates-grid">
+        <div class="tmpl-card">
+          <div class="tmpl-icon">📊</div>
+          <h3>Project Management</h3>
+          <a href="#">Use template</a>
+        </div>
+        <div class="tmpl-card">
+          <div class="tmpl-icon">📣</div>
+          <h3>Marketing Plan</h3>
+          <a href="#">Use template</a>
+        </div>
+        <div class="tmpl-card">
+          <div class="tmpl-icon">🚀</div>
+          <h3>Product Launch</h3>
+          <a href="#">Use template</a>
+        </div>
+        <div class="tmpl-card">
+          <div class="tmpl-icon">📓</div>
+          <h3>Personal Planner</h3>
+          <a href="#">Use template</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# TRUST %>
+<section class="trust-section">
+  <div class="wrap">
+    <h2>Trusted by teams around the world</h2>
+    <div class="logos-row">
+      <span class="logo-item">airbnb</span>
+      <span class="logo-item">Google</span>
+      <span class="logo-item">Microsoft</span>
+      <span class="logo-item">amazon</span>
+      <span class="logo-item">Spotify</span>
+      <span class="logo-item">slack</span>
+    </div>
+  </div>
+</section>
+
+<%# TESTIMONIALS %>
+<section class="testimonials-section">
+  <div class="wrap">
+    <div class="sec-header">
+      <h2>What our users say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="quote-mark">"</div>
+        <p>Taskmanager has completely transformed how our team works. Everything is organized, and nothing falls through the cracks.</p>
+        <div class="testi-author">
+          <div class="t-avatar">SJ</div>
+          <div>
+            <div class="t-name">Sarah Johnson</div>
+            <div class="t-role">Product Manager at Airbnb</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote-mark">"</div>
+        <p>The best task management tool we've used. Simple, intuitive, and super powerful.</p>
+        <div class="testi-author">
+          <div class="t-avatar">DL</div>
+          <div>
+            <div class="t-name">David Lee</div>
+            <div class="t-role">CTO at Pixel Co.</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote-mark">"</div>
+        <p>I love how easy it is to collaborate and stay on top of tasks. Highly recommended!</p>
+        <div class="testi-author">
+          <div class="t-avatar">EW</div>
+          <div>
+            <div class="t-name">Emma Wilson</div>
+            <div class="t-role">Marketing Lead at Spotify</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# CTA BANNER %>
+<section class="cta-banner">
+  <div class="wrap cta-inner">
+    <div class="cta-text">
+      <h2>Ready to get more done?</h2>
+      <p>Join thousands of teams already using Taskmanager<br>to stay organized and productive.</p>
+    </div>
+    <div class="cta-btns">
+      <%= link_to "Get started free →", sign_up_path, class: "btn btn-white" %>
+      <a href="#how-it-works" class="btn btn-outline-white">Book a demo</a>
+    </div>
+  </div>
+</section>
