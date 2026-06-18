@@ -1200,3 +1200,140 @@ footer.main-footer { background: #0a0a14; padding: 64px 0 36px; }
 
 .errors ul { list-style: none; }
 .errors li { color: var(--danger); font-size: 14px; }
+
+/* ─── RESPONSIVE ──────────────────────────────────── */
+
+/* Tablet ≤ 1024px */
+@media (max-width: 1024px) {
+  .wrap { padding: 0 28px; }
+
+  /* Nav */
+  nav.top-nav { padding: 0 28px; }
+
+  /* Hero */
+  .hero-section { padding: 56px 0 0; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .hero-left h1 { font-size: 42px; }
+  .hero-ctas { justify-content: center; }
+  .social-proof { justify-content: center; }
+  .hero-right { justify-content: center; }
+  .app-mockup { max-width: 560px; }
+
+  /* Features */
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Templates */
+  .templates-inner { grid-template-columns: 1fr; gap: 32px; }
+  .tmpl-left { text-align: center; }
+  .templates-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Testimonials */
+  .testi-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Footer */
+  .footer-top { grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+  .f-newsletter { grid-column: span 3; }
+
+  /* Auth */
+  .auth-split { grid-template-columns: 45% 55%; }
+  .auth-right { padding: 48px 48px; }
+  .auth-feats { grid-template-columns: 1fr; }
+}
+
+/* Mobile ≤ 768px */
+@media (max-width: 768px) {
+  /* Nav */
+  nav.top-nav { padding: 0 20px; gap: 0; }
+  .nav-links { display: none; }
+  .nav-brand { margin-right: auto; }
+  .nav-login { padding: 6px 10px; }
+
+  /* Hero */
+  .hero-section { padding: 40px 0 0; }
+  .hero-inner { gap: 36px; }
+  .hero-left h1 { font-size: 34px; letter-spacing: -0.8px; }
+  .hero-left > p { font-size: 15px; }
+  .hero-right { display: none; }
+
+  /* Sections */
+  section { padding: 64px 0; }
+  .sec-header { margin-bottom: 36px; }
+  .sec-header h2 { font-size: 26px; }
+  .sec-header p { font-size: 15px; }
+
+  /* Features */
+  .features-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+  /* How it works */
+  .steps-row { grid-template-columns: 1fr; gap: 28px; }
+  .step-arrow { display: none; }
+  .step-card { padding: 0; }
+
+  /* Templates */
+  .templates-inner { gap: 24px; }
+  .templates-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Logos */
+  .logos-row { gap: 28px; }
+  .logo-item { font-size: 16px; }
+
+  /* Testimonials */
+  .testi-grid { grid-template-columns: 1fr; }
+
+  /* CTA Banner */
+  .cta-inner { flex-direction: column; text-align: center; gap: 28px; }
+  .cta-btns { justify-content: center; }
+  .cta-text h2 { font-size: 26px; }
+  .cta-text p { font-size: 15px; }
+
+  /* Footer */
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .f-newsletter { grid-column: span 2; }
+
+  /* Auth: hide left panel, form takes full width */
+  .auth-split { grid-template-columns: 1fr; }
+  .auth-left { display: none; }
+  .auth-right { padding: 48px 32px; min-height: 100vh; }
+  .auth-form-wrap { max-width: 420px; }
+}
+
+/* Small mobile ≤ 480px */
+@media (max-width: 480px) {
+  .wrap { padding: 0 16px; }
+  nav.top-nav { padding: 0 16px; }
+
+  /* Nav: hide "Get started" button, keep Log in only */
+  .btn-signup { display: none; }
+
+  /* Hero */
+  .hero-left h1 { font-size: 28px; letter-spacing: -0.5px; }
+  .hero-tag { font-size: 11px; }
+  .hero-ctas { flex-direction: column; align-items: stretch; }
+  .hero-ctas .btn { justify-content: center; }
+  .social-proof { flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .stars { margin: 0 6px; }
+
+  /* Sections */
+  section { padding: 48px 0; }
+  .sec-header h2 { font-size: 22px; }
+
+  /* Features */
+  .features-grid { grid-template-columns: 1fr; }
+
+  /* Templates */
+  .templates-grid { grid-template-columns: 1fr; }
+
+  /* Footer */
+  .footer-top { grid-template-columns: 1fr; }
+  .f-newsletter { grid-column: span 1; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+  /* Auth */
+  .auth-right { padding: 36px 20px; }
+  .auth-title { font-size: 22px; }
+  .auth-sub { font-size: 13px; margin-bottom: 24px; }
+  .auth-field { margin-bottom: 14px; }
+  .auth-input-wrap input { font-size: 14px; padding: 10px 14px 10px 38px; }
+  .btn-auth { font-size: 15px; padding: 12px; }
+  .social-btn { font-size: 13px; padding: 10px 14px; }
+}
