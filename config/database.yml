@@ -9,14 +9,14 @@ default: &default
 
 development:
   <<: *default
-  database: taskmanager_development
+  database: taskmanagerdevelopment
 
 test:
   <<: *default
-  database: taskmanager_test
+  database: taskmanagertest
 
 production:
   <<: *default
-  database: taskmanager_production
+  database: taskmanagerproduction
   username: <%= ENV["DB_USERNAME"] %>
   password: <%= ENV["DB_PASSWORD"] %>
