@@ -9,15 +9,12 @@
   </head>
 
   <body>
+    <%= render "shared/nav" %>
+
     <div class="auth-split">
 
       <%# LEFT PANEL %>
       <div class="auth-left">
-
-        <%= link_to root_path, class: "auth-brand" do %>
-          <span class="nav-logo-box">✓</span>
-          Taskmanager
-        <% end %>
 
         <div class="auth-left-hero">
           <%= yield :left_heading %>
@@ -115,5 +112,7 @@
       </div>
 
     </div>
+
+    <%= render "shared/footer" %>
   </body>
 </html>

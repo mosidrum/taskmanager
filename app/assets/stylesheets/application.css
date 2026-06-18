@@ -689,7 +689,7 @@ footer.main-footer { background: #0a0a14; padding: 64px 0 36px; }
 .auth-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
+  min-height: calc(100vh - 64px);
 }
 
 .auth-left {
@@ -1358,7 +1358,7 @@ footer.main-footer { background: #0a0a14; padding: 64px 0 36px; }
   /* Auth */
   .auth-split { grid-template-columns: 1fr; }
   .auth-left { display: none; }
-  .auth-right { padding: 48px 32px; min-height: 100vh; }
+  .auth-right { padding: 48px 32px; min-height: calc(100vh - 64px); }
   .auth-form-wrap { max-width: 440px; }
 }
 
