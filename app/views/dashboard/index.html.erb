@@ -1,0 +1,232 @@
+<%# ── STAT CARDS ── %>
+<div class="db-stats">
+  <div class="db-stat-card">
+    <div class="db-stat-icon ic-blue">📋</div>
+    <div class="db-stat-body">
+      <span class="db-stat-label">My tasks</span>
+      <span class="db-stat-num"><%= @tasks_count %></span>
+      <span class="db-stat-sub">Total tasks</span>
+    </div>
+  </div>
+  <div class="db-stat-card">
+    <div class="db-stat-icon ic-orange">⏳</div>
+    <div class="db-stat-body">
+      <span class="db-stat-label">In progress</span>
+      <span class="db-stat-num in-progress"><%= @in_progress %></span>
+      <span class="db-stat-sub">Tasks</span>
+    </div>
+  </div>
+  <div class="db-stat-card">
+    <div class="db-stat-icon ic-green">✅</div>
+    <div class="db-stat-body">
+      <span class="db-stat-label">Completed</span>
+      <span class="db-stat-num completed"><%= @completed %></span>
+      <span class="db-stat-sub">Tasks</span>
+    </div>
+  </div>
+  <div class="db-stat-card">
+    <div class="db-stat-icon ic-red">🕐</div>
+    <div class="db-stat-body">
+      <span class="db-stat-label">Overdue</span>
+      <span class="db-stat-num overdue"><%= @overdue %></span>
+      <span class="db-stat-sub">Tasks</span>
+    </div>
+  </div>
+</div>
+
+<%# ── MAIN GRID ── %>
+<div class="db-grid">
+
+  <%# LEFT COLUMN %>
+  <div class="db-left">
+
+    <%# TODAY SECTION %>
+    <div class="db-section">
+      <div class="db-section-hdr">
+        <span class="db-section-title">Today</span>
+        <a href="#" class="db-view-all">View all</a>
+      </div>
+      <% if @today_tasks.any? %>
+        <% @today_tasks.each do |task| %>
+          <div class="db-task-row">
+            <span class="db-task-check <%= task.completed? ? 'checked' : '' %>">
+              <%= task.completed? ? '✓' : '' %>
+            </span>
+            <span class="db-task-title <%= task.completed? ? 'done' : '' %>"><%= task.title %></span>
+            <% if task.label.present? %>
+              <span class="db-task-label"><%= task.label %></span>
+            <% end %>
+            <% if task.due_date.present? %>
+              <span class="db-task-time"><%= task.due_date.strftime("%-I:%M %p") rescue task.due_date.strftime("%b %-d") %></span>
+            <% end %>
+            <span class="db-task-flag <%= task.priority == 'high' ? 'flagged' : '' %>">⚑</span>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="db-empty">No tasks due today. Enjoy your day! 🎉</div>
+      <% end %>
+    </div>
+
+    <%# PROJECTS SECTION %>
+    <div class="db-section">
+      <div class="db-section-hdr">
+        <span class="db-section-title">Projects</span>
+        <a href="#" class="db-view-all">View all</a>
+      </div>
+      <% if @projects.any? %>
+        <% @projects.each do |project| %>
+          <% total = project.tasks.count %>
+          <% done  = project.tasks.completed.count %>
+          <% pct   = total > 0 ? (done.to_f / total * 100).round : 0 %>
+          <div class="db-project-row">
+            <span class="db-project-emoji"><%= project.emoji.presence || "📁" %></span>
+            <div class="db-project-info">
+              <span class="db-project-name"><%= project.name %></span>
+              <div class="db-progress-bar">
+                <div class="db-progress-fill" style="width: <%= pct %>%; background: <%= project.color.presence || '#5b5bd6' %>;"></div>
+              </div>
+            </div>
+            <span class="db-project-count"><%= done %> / <%= total %> tasks</span>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="db-empty">No projects yet. Create one to get started!</div>
+      <% end %>
+    </div>
+
+    <%# RECENT ACTIVITY SECTION %>
+    <div class="db-section">
+      <div class="db-section-hdr">
+        <span class="db-section-title">Recent activity</span>
+        <a href="#" class="db-view-all">View all</a>
+      </div>
+      <% if @recent_activity.any? %>
+        <% @recent_activity.each do |task| %>
+          <div class="db-activity-row">
+            <div class="db-activity-avatar"><%= current_user.name[0].upcase %></div>
+            <div class="db-activity-text">
+              <strong><%= current_user.name %></strong>
+              <%= task.completed? ? "completed" : "updated" %>
+              "<%= task.title %>"
+            </div>
+            <span class="db-activity-time"><%= time_ago_in_words(task.updated_at) %> ago</span>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="db-empty">No recent activity yet.</div>
+      <% end %>
+    </div>
+
+  </div><%# end db-left %>
+
+  <%# RIGHT COLUMN %>
+  <div class="db-right">
+
+    <%# TASKS BY STATUS — SVG DONUT CHART %>
+    <div class="db-section">
+      <div class="db-section-hdr">
+        <span class="db-section-title">Tasks by status</span>
+        <span class="db-period-badge">This week</span>
+      </div>
+
+      <%
+        total_all  = [@tasks_count, 1].max
+        c_pct      = @completed.to_f / total_all
+        ip_pct     = @in_progress.to_f / total_all
+        td_pct     = (@tasks_count - @completed - @in_progress - @overdue).clamp(0, Float::INFINITY).to_f / total_all
+        ov_pct     = @overdue.to_f / total_all
+
+        r          = 54
+        circ       = 2 * Math::PI * r
+
+        c_dash   = (c_pct  * circ).round(2)
+        ip_dash  = (ip_pct * circ).round(2)
+        td_dash  = (td_pct * circ).round(2)
+        ov_dash  = (ov_pct * circ).round(2)
+
+        c_off  = 0
+        ip_off = -(c_dash)
+        td_off = -(c_dash + ip_dash)
+        ov_off = -(c_dash + ip_dash + td_dash)
+      %>
+
+      <div class="db-donut-wrap">
+        <svg viewBox="0 0 140 140" class="db-donut-svg">
+          <circle cx="70" cy="70" r="<%= r %>" fill="none" stroke="var(--border)" stroke-width="14"/>
+          <% if @tasks_count > 0 %>
+            <circle cx="70" cy="70" r="<%= r %>" fill="none" stroke="#10b981" stroke-width="14"
+              stroke-dasharray="<%= c_dash %> <%= circ.round(2) %>"
+              stroke-dashoffset="<%= c_off %>"
+              transform="rotate(-90 70 70)"/>
+            <circle cx="70" cy="70" r="<%= r %>" fill="none" stroke="#f59e0b" stroke-width="14"
+              stroke-dasharray="<%= ip_dash %> <%= circ.round(2) %>"
+              stroke-dashoffset="<%= ip_off %>"
+              transform="rotate(-90 70 70)"/>
+            <circle cx="70" cy="70" r="<%= r %>" fill="none" stroke="#5b5bd6" stroke-width="14"
+              stroke-dasharray="<%= td_dash %> <%= circ.round(2) %>"
+              stroke-dashoffset="<%= td_off %>"
+              transform="rotate(-90 70 70)"/>
+            <circle cx="70" cy="70" r="<%= r %>" fill="none" stroke="#ef4444" stroke-width="14"
+              stroke-dasharray="<%= ov_dash %> <%= circ.round(2) %>"
+              stroke-dashoffset="<%= ov_off %>"
+              transform="rotate(-90 70 70)"/>
+          <% end %>
+          <text x="70" y="66" text-anchor="middle" class="db-donut-num"><%= @tasks_count %></text>
+          <text x="70" y="81" text-anchor="middle" class="db-donut-lbl">Total</text>
+        </svg>
+
+        <div class="db-donut-legend">
+          <div class="db-legend-row">
+            <span class="db-legend-dot" style="background:#10b981"></span>
+            <span class="db-legend-label">Completed</span>
+            <span class="db-legend-val"><%= @completed %> (<%= @tasks_count > 0 ? (@completed.to_f / @tasks_count * 100).round : 0 %>%)</span>
+          </div>
+          <div class="db-legend-row">
+            <span class="db-legend-dot" style="background:#f59e0b"></span>
+            <span class="db-legend-label">In progress</span>
+            <span class="db-legend-val"><%= @in_progress %> (<%= @tasks_count > 0 ? (@in_progress.to_f / @tasks_count * 100).round : 0 %>%)</span>
+          </div>
+          <div class="db-legend-row">
+            <span class="db-legend-dot" style="background:#5b5bd6"></span>
+            <span class="db-legend-label">Todo</span>
+            <span class="db-legend-val"><%= [0, @tasks_count - @completed - @in_progress - @overdue].max %> (<%= @tasks_count > 0 ? ([0, @tasks_count - @completed - @in_progress - @overdue].max.to_f / @tasks_count * 100).round : 0 %>%)</span>
+          </div>
+          <div class="db-legend-row">
+            <span class="db-legend-dot" style="background:#ef4444"></span>
+            <span class="db-legend-label">Overdue</span>
+            <span class="db-legend-val"><%= @overdue %> (<%= @tasks_count > 0 ? (@overdue.to_f / @tasks_count * 100).round : 0 %>%)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%# UPCOMING SECTION %>
+    <div class="db-section">
+      <div class="db-section-hdr">
+        <span class="db-section-title">Upcoming</span>
+        <a href="#" class="db-view-all">View all</a>
+      </div>
+      <% if @upcoming_tasks.any? %>
+        <% @upcoming_tasks.each do |task| %>
+          <div class="db-upcoming-row">
+            <div class="db-upcoming-date">
+              <span class="db-upcoming-month"><%= task.due_date.strftime("%b").upcase %></span>
+              <span class="db-upcoming-day"><%= task.due_date.day %></span>
+            </div>
+            <div class="db-upcoming-info">
+              <span class="db-upcoming-title"><%= task.title %></span>
+              <% if task.label.present? %>
+                <span class="db-task-label"><%= task.label %></span>
+              <% end %>
+            </div>
+            <div class="db-activity-avatar"><%= current_user.name[0].upcase %></div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="db-empty">No upcoming tasks. You're all caught up!</div>
+      <% end %>
+    </div>
+
+  </div><%# end db-right %>
+
+</div><%# end db-grid %>
