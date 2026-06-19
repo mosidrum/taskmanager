@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root "welcome#index"
   get "about", to: "about#index"
   get "tasks", to: "tasks#index"
+  get "dashboard", to: "dashboard#index"
 
   get "sign_up", to: "users#new"
   post "sign_up", to: "users#create"
