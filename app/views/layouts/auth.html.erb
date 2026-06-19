@@ -114,5 +114,13 @@
     </div>
 
     <%= render "shared/footer" %>
+    <script>
+      function togglePw(el) {
+        var input = el.parentElement.querySelector('input');
+        var show = input.type === 'password';
+        input.type = show ? 'text' : 'password';
+        el.textContent = show ? '🙈' : '👁';
+      }
+    </script>
   </body>
 </html>
