@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Taskly" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body class="db-body">
+    <div class="db-layout">
+
+      <%# ── SIDEBAR ── %>
+      <aside class="db-sidebar">
+        <div class="db-sidebar-top">
+          <a href="<%= root_path %>" class="db-brand">
+            <span class="db-brand-box">✓</span>
+            Taskly
+          </a>
+
+          <a href="#" class="db-new-task-btn">
+            <span>＋</span> New task
+          </a>
+
+          <nav class="db-nav">
+            <a href="<%= dashboard_path %>" class="db-nav-item <%= controller_name == 'dashboard' ? 'active' : '' %>">
+              <span class="db-nav-icon">🏠</span> Dashboard
+            </a>
+            <a href="#" class="db-nav-item">
+              <span class="db-nav-icon">✅</span> My tasks
+            </a>
+            <a href="#" class="db-nav-item">
+              <span class="db-nav-icon">📥</span> Inbox
+              <span class="db-badge">4</span>
+            </a>
+            <a href="#" class="db-nav-item">
+              <span class="db-nav-icon">📅</span> Today
+            </a>
+            <a href="#" class="db-nav-item">
+              <span class="db-nav-icon">🗓</span> Upcoming
+            </a>
+            <a href="#" class="db-nav-item">
+              <span class="db-nav-icon">📁</span> Projects
+            </a>
+            <a href="#" class="db-nav-item">
+              <span class="db-nav-icon">👥</span> Teams
+            </a>
+            <a href="#" class="db-nav-item">
+              <span class="db-nav-icon">📆</span> Calendar
+            </a>
+            <a href="#" class="db-nav-item">
+              <span class="db-nav-icon">📊</span> Reports
+            </a>
+            <a href="#" class="db-nav-item">
+              <span class="db-nav-icon">⚙️</span> Settings
+            </a>
+          </nav>
+        </div>
+
+        <div class="db-sidebar-bottom">
+          <div class="db-upgrade-card">
+            <div class="db-upgrade-icon">🚀</div>
+            <p class="db-upgrade-title">Upgrade to Pro</p>
+            <p class="db-upgrade-desc">Unlock advanced features and boost your productivity.</p>
+            <a href="#" class="db-upgrade-btn">Upgrade now</a>
+          </div>
+
+          <div class="db-user-row">
+            <div class="db-user-avatar"><%= current_user.name[0].upcase %></div>
+            <div class="db-user-info">
+              <span class="db-user-name"><%= current_user.name %></span>
+              <span class="db-user-email"><%= current_user.email %></span>
+            </div>
+            <%= button_to "→", logout_path, method: :delete, class: "db-logout-btn", title: "Log out" %>
+          </div>
+        </div>
+      </aside>
+
+      <%# ── MAIN AREA ── %>
+      <div class="db-main">
+
+        <%# Top header %>
+        <header class="db-header">
+          <div class="db-header-left">
+            <h1 class="db-greeting">
+              Good <%= Time.now.hour < 12 ? "morning" : Time.now.hour < 18 ? "afternoon" : "evening" %>,
+              <%= current_user.name.split.first %>! 👋
+            </h1>
+            <p class="db-greeting-sub">Here's what's happening with your tasks today.</p>
+          </div>
+          <div class="db-header-right">
+            <div class="db-search">
+              <span class="db-search-icon">🔍</span>
+              <input type="text" placeholder="Search tasks, projects..." class="db-search-input">
+            </div>
+            <button class="db-icon-btn" title="Notifications">🔔</button>
+            <div class="db-header-avatars">
+              <div class="db-hav av1">O</div>
+              <div class="db-hav av2">L</div>
+              <div class="db-hav av3">S</div>
+              <span class="db-hav-more">+2</span>
+            </div>
+          </div>
+        </header>
+
+        <%# Page content %>
+        <main class="db-content">
+          <%= yield %>
+        </main>
+
+      </div><%# end db-main %>
+    </div><%# end db-layout %>
+  </body>
+</html>
