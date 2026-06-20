@@ -1,0 +1,32 @@
+<div class="inner-page">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <span style="font-size:36px;"><%= @project.emoji.presence || "📁" %></span>
+      <div>
+        <h1 class="page-title" style="margin-bottom:0;"><%= @project.name %></h1>
+        <p style="font-size:13px; color:var(--muted); margin-top:4px;">
+          <%= @project.tasks.count %> tasks &middot;
+          Created <%= @project.created_at.strftime("%b %-d, %Y") %>
+        </p>
+      </div>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <%= link_to "Edit", edit_dashboard_project_path(@project), class: "btn btn-ghost" %>
+      <%= button_to "Delete", dashboard_project_path(@project), method: :delete, class: "btn btn-ghost",
+            data: { turbo_confirm: "Delete #{@project.name}?" } %>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+      <span style="font-size:13px; color:var(--muted);">Colour</span>
+      <span style="display:inline-block; width:20px; height:20px; border-radius:50%;
+                   background:<%= @project.color.presence || '#5b5bd6' %>; border:1px solid var(--border);"></span>
+      <span style="font-size:13px;"><%= @project.color.presence || "—" %></span>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;">
+    <%= link_to "← Back to projects", dashboard_projects_path, style: "font-size:14px; color:var(--accent);" %>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="inner-page">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+    <div>
+      <h1 class="page-title">Projects</h1>
+      <p class="page-sub">All your projects in one place.</p>
+    </div>
+    <%= link_to "New project", new_dashboard_project_path, class: "btn btn-primary" %>
+  </div>
+
+  <% if @projects.any? %>
+    <% @projects.each do |project| %>
+      <div class="card" style="margin-bottom:16px; display:flex; align-items:center; gap:16px;">
+        <span style="font-size:28px;"><%= project.emoji.presence || "📁" %></span>
+        <div style="flex:1;">
+          <strong><%= project.name %></strong>
+          <div style="font-size:13px; color:var(--muted); margin-top:2px;">
+            <%= project.tasks.count %> tasks
+          </div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <%= link_to "View", dashboard_project_path(project), class: "btn btn-ghost" %>
+          <%= link_to "Edit", edit_dashboard_project_path(project), class: "btn btn-ghost" %>
+          <%= button_to "Delete", dashboard_project_path(project), method: :delete, class: "btn btn-ghost",
+                data: { turbo_confirm: "Delete #{project.name}?" } %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="card" style="text-align:center; color:var(--muted); padding:48px;">
+      No projects yet. <%= link_to "Create your first one", new_dashboard_project_path %>.
+    </div>
+  <% end %>
+</div>

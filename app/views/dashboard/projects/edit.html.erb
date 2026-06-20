@@ -1,0 +1,12 @@
+<div class="inner-page">
+  <h1 class="page-title">Edit project</h1>
+  <p class="page-sub">Update the details for <strong><%= @project.name %></strong>.</p>
+
+  <div class="card">
+    <%= render "form", project: @project %>
+  </div>
+
+  <div style="margin-top:16px;">
+    <%= link_to "← Back", dashboard_project_path(@project), style: "font-size:14px; color:var(--accent);" %>
+  </div>
+</div>
