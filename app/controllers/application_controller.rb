@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
   def require_login
     redirect_to login_path unless current_user
   end
+
+  def redirect_if_logged_in
+    redirect_to dashboard_root_path if current_user
+  end
 end

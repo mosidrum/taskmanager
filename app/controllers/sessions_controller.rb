@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   layout "auth"
+  before_action :redirect_if_logged_in, only: %i[new create]
 
   def new; end
 
@@ -7,7 +8,7 @@ class SessionsController < ApplicationController
     user = authenticate_user
     if user
       session[:user_id] = user.id
-      redirect_to dashboard_path, notice: "Welcome back, #{user.name}!"
+      redirect_to dashboard_root_path, notice: "Welcome back, #{user.name}!"
     else
       flash.now[:alert] = I18n.t("sessions.invalid_credentials")
       render :new, status: :unprocessable_content
