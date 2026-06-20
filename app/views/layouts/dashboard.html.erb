@@ -24,35 +24,35 @@
           </a>
 
           <nav class="db-nav">
-            <a href="<%= dashboard_path %>" class="db-nav-item <%= controller_name == 'dashboard' ? 'active' : '' %>">
+            <a href="<%= dashboard_root_path %>" class="db-nav-item <%= controller_name == 'home' ? 'active' : '' %>">
               <span class="db-nav-icon">🏠</span> Dashboard
             </a>
-            <a href="#" class="db-nav-item">
+            <a href="<%= dashboard_my_tasks_path %>" class="db-nav-item <%= controller_name == 'my_tasks' ? 'active' : '' %>">
               <span class="db-nav-icon">✅</span> My tasks
             </a>
-            <a href="#" class="db-nav-item">
+            <a href="<%= dashboard_inbox_path %>" class="db-nav-item <%= controller_name == 'inbox' ? 'active' : '' %>">
               <span class="db-nav-icon">📥</span> Inbox
               <span class="db-badge">4</span>
             </a>
-            <a href="#" class="db-nav-item">
+            <a href="<%= dashboard_today_path %>" class="db-nav-item <%= controller_name == 'today' ? 'active' : '' %>">
               <span class="db-nav-icon">📅</span> Today
             </a>
-            <a href="#" class="db-nav-item">
+            <a href="<%= dashboard_upcoming_path %>" class="db-nav-item <%= controller_name == 'upcoming' ? 'active' : '' %>">
               <span class="db-nav-icon">🗓</span> Upcoming
             </a>
-            <a href="#" class="db-nav-item">
+            <a href="<%= dashboard_projects_path %>" class="db-nav-item <%= controller_name == 'projects' ? 'active' : '' %>">
               <span class="db-nav-icon">📁</span> Projects
             </a>
-            <a href="#" class="db-nav-item">
+            <a href="<%= dashboard_teams_path %>" class="db-nav-item <%= controller_name == 'teams' ? 'active' : '' %>">
               <span class="db-nav-icon">👥</span> Teams
             </a>
-            <a href="#" class="db-nav-item">
+            <a href="<%= dashboard_calendar_path %>" class="db-nav-item <%= controller_name == 'calendar' ? 'active' : '' %>">
               <span class="db-nav-icon">📆</span> Calendar
             </a>
-            <a href="#" class="db-nav-item">
+            <a href="<%= dashboard_reports_path %>" class="db-nav-item <%= controller_name == 'reports' ? 'active' : '' %>">
               <span class="db-nav-icon">📊</span> Reports
             </a>
-            <a href="#" class="db-nav-item">
+            <a href="<%= dashboard_settings_path %>" class="db-nav-item <%= controller_name == 'settings' ? 'active' : '' %>">
               <span class="db-nav-icon">⚙️</span> Settings
             </a>
           </nav>
